@@ -22,8 +22,11 @@ class Golomb(object):
         assert isinstance(s, str)
 
         zero_pos = s.find('0')
-        return (zero_pos * self.m + int(s[zero_pos + 1: zero_pos + 1 + self.maxbits], 2),
-                s[zero_pos + 1 + self.maxbits])
+        try:
+            return (zero_pos * self.m + int(s[zero_pos + 1: zero_pos + 1 + self.maxbits], 2),
+                    s[zero_pos + 1 + self.maxbits:])
+        except ValueError:  # occurs when remainder is none
+            return (zero_pos * self.m, s[zero_pos + 1 + self.maxbits:])
 
 class GolombStream(Golomb):
     """
