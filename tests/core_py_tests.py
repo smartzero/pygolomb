@@ -1,3 +1,15 @@
+#!/usr/bin/env python
+# -*- encoding: UTF-8 -*-
+
+# this is too hacky, remove this and find some standard way
+# ----------- adding .. in sys path ---------------
+import sys
+import os
+path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+if not path in sys.path:
+    sys.path.insert(1, path)
+del path
+# ------------- .. added in sys.path --------------
 from pygolomb.core import Golomb
 
 def golomb_test(m, inputs):
